@@ -274,7 +274,7 @@ Models can be found in `models.py` file.
 
 ## Deployment Details:
 
-- App is deployed to [Render](https://harsh-casting-agency.herokuapp.com/ "Render").
+- App is deployed to [Render](https://udacity-capstone-6zyr.onrender.com/ "Render").
 - Render Postgres **DATABASE** details are available in `setup.sh` file for reference.
 
 Use the above stated endpoints and append to this link above to execute the app either through CURL or Postman.
@@ -295,9 +295,6 @@ $ curl -X DELETE https://harsh-casting-agency.herokuapp.com/movies/1
 We can run our entire test case by running the following command at command line
 
 ```python
-$ dropdb agency
-$ createdb agency
-$ psql agency < db.psql
 $ python test_app.py
 ```
 
