@@ -31,17 +31,9 @@ def setup_db(app, database_path=DATABASE_PATH):
 # Models
 # ---------------------------------------------------------------------------- #
 
-
-class Movie(db.Model):
-    __tablename__ = 'Movie'
-
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(), nullable=False)
-    release_date = db.Column(db.DateTime, nullable=False)
-
-    def __init__(self, title, release_date):
-        self.title = title
-        self.release_date = release_date
+# Abstract class for common methods
+class abstractModelClass(db.Model):
+    __abstract__ = True
 
     def insert(self):
         db.session.add(self)
@@ -54,6 +46,18 @@ class Movie(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+
+class Movie(abstractModelClass):
+    __tablename__ = 'Movie'
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(), nullable=False)
+    release_date = db.Column(db.DateTime, nullable=False)
+
+    def __init__(self, title, release_date):
+        self.title = title
+        self.release_date = release_date
+
     def format(self):
         return {
             'id': self.id,
@@ -61,7 +65,7 @@ class Movie(db.Model):
             'release_date': self.release_date
         }
 
-class Actor(db.Model):
+class Actor(abstractModelClass):
     __tablename__ = 'Actor'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -73,17 +77,6 @@ class Actor(db.Model):
         self.name = name
         self.age = age
         self.gender = gender
-
-    def insert(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def update(self):
-        db.session.commit()
-
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
 
     def format(self):
         return {

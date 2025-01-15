@@ -2,6 +2,8 @@
 
 This is the final project of the Udacity Full Stack Developer NanoDegree Program. The goal of this project is to deploy a Flask application with Render/PostgreSQL and enable Role Based Authentication and Roles-Based Access Control (RBAC) with Auth0.
 
+Casting Agency models a movie casting agency, that needs to track actors and movies. To do this, different roles are created in order to read, create, modify and delete actors and movies from the underlying database.  
+
 ## Getting Started
 
 ### Installing Dependencies
@@ -35,12 +37,22 @@ This will install all the required packages we selected within the `requirements
 
 To run the server, execute:
 
+***On Linux***
 ```bash
 $ source setup.sh
 $ export FLASK_APP=app.py
 $ export FLASK_ENV=development
 $ flask run -- reload
 ```
+
+***On Windows***
+```bash
+$ source setup.sh
+$ set FLASK_APP=app.py
+$ set FLASK_ENV=development
+$ flask run -- reload
+```
+
 
 Running `setup.sh` sets some environment variables used by the app.
 
@@ -276,6 +288,17 @@ Models can be found in `models.py` file.
 
 - App is deployed to [Render](https://udacity-capstone-6zyr.onrender.com/ "Render").
 - Render Postgres **DATABASE** details are available in `setup.sh` file for reference.
+- To deploy this project in Render you need to:
+  - clone it in your GitHub account
+  - create a new Render account
+  - link your Render account to your GitHub account
+  - create a new Postgres database in Render and copy its internal link
+  - create a new WebService project in Render, linked to this project repository in GitHub
+  - add the following Environment Variables to your project:
+    - **DATABASE_URL** = your Render Postgres database internal link
+    - **AUTH0_DOMAIN** = your Auth0 domain
+    - **ALGORITHMS** = your Auth0 algorithms
+    - **API_AUDIENCE** = your Auth0 API Audience
 
 Use the above stated endpoints and append to this link above to execute the app either through CURL or Postman.
 
